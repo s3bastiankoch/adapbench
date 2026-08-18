@@ -1,4 +1,4 @@
-"""AdaBench online scheduler (paper Algorithm 1): the deployable prototype.
+"""AdapBench online scheduler (paper Algorithm 1): the deployable prototype.
 
 Given a suite of benchmarks ("arms") that just ran against a code change,
 find the ones that got slower or faster with as few measurements as

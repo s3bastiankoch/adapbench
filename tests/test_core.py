@@ -1,4 +1,4 @@
-"""Tests for the AdaBench core: the duet-diff band and the online scheduler
+"""Tests for the AdapBench core: the duet-diff band and the online scheduler
 (allocation, anytime-valid claims, certified budget stops)."""
 import sys
 from pathlib import Path
