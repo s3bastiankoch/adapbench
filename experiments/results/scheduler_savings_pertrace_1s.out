@@ -1,0 +1,25 @@
+
+tcp8: 8392 arms / 118 traces, 1277 slowdown >3% (one-sided)   [5 seeds, 3458.8s, replay=rmit, per-trace scheduling, uniform alpha=0.003 (validity-matched)]
+  self-terminating: saved 55.5%   recall 0.926   FP 0.0007
+  matched recall  uniform budget   our budget    saved
+           70.0%           42.1%        18.5%    56.0%
+           80.0%           63.8%        24.7%    61.2%
+           85.0%           78.1%        29.2%    62.6%
+           90.0%           97.0%        37.9%    60.9%
+           95.0%               -            -        -
+           95.5%               -            -        -
+           95.7%               -            -        -
+        detected   ours (budget)      uniform  speedup
+             50%           10.5%        18.6%     1.8x
+             75%           21.2%        51.7%     2.4x
+             90%           37.9%        97.0%     2.6x
+             project  arms  npos   saved@0.70   saved@0.80   saved@0.85   saved@0.90  uni@0.90  st saved  recall      FP
+           bytebuddy   912   179        44.7%        53.7%        59.7%        60.0%     86.1%     53.6%   0.943  0.0000
+  eclipsecollections  1350   180        74.2%        77.5%        75.6%        72.7%     81.8%     66.9%   0.943  0.0002
+             jctools  1055   109        68.5%        66.6%            -            -         -     54.3%   0.894  0.0011
+            jenetics   891    63            -            -            -            -         -     41.0%   0.815  0.0002
+               netty  1281   310        45.5%        51.1%        56.3%        60.3%     86.1%     56.2%   0.941  0.0006
+                okio  1498   210        64.1%        65.6%        62.8%            -         -     51.6%   0.924  0.0003
+               xodus   349    65        46.1%        55.3%        61.5%            -         -     56.5%   0.939  0.0064
+              zipkin  1056   161        52.7%        57.5%        61.4%            -         -     54.5%   0.920  0.0009
+  -> perproject_savings_1s.json

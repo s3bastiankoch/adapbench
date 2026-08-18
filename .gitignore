@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# local config / secrets
+.env
+
+# editor
+.vscode/
+
+# trace corpus (fetched separately; see scripts/fetch_data.sh and data/README.md)
+data/*
+!data/README.md
+.claude/

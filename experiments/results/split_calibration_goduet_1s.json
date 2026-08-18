@@ -1,0 +1,1 @@
+{"suite": "goduet", "alpha": 0.01, "margin": 0.8, "side": "up", "chosen": {"alpha_claim": 0.005, "alpha_pool": 0.002}, "select": {"aa": 0.003937007874015748, "recall": 1.0}, "heldout": {"aa": 0.004724409448818898, "recall": 1.0}}

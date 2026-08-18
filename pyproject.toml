@@ -1,0 +1,21 @@
+[project]
+name = "adabench"
+version = "0.1.0"
+description = "Adaptive microbenchmark scheduling with anytime-valid early stopping: beat round-robin/RMIT under a type-I error guarantee"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/adabench"]

@@ -1,0 +1,1 @@
+{"suite": "tcp8", "alpha": 0.01, "margin": 0.8, "side": "up", "chosen": {"alpha_claim": 0.005, "alpha_pool": 0.004}, "select": {"aa": 0.007578646329837941, "recall": 0.92578125}, "heldout": {"aa": 0.007530981887511916, "recall": 0.9291214835769291}}

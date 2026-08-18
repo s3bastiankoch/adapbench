@@ -1,0 +1,46 @@
+
+tcp8: 8392 arms / 118 traces, 2447 |effect| >3% (two-sided)   [5 seeds, 3121.8s, replay=rmit, per-trace scheduling, uniform alpha=0.007 (validity-matched)]
+  self-terminating: saved 29.6%   recall 0.959   FP 0.0017
+  matched recall  uniform budget   our budget    saved
+           70.0%           36.4%        26.0%    28.6%
+           80.0%           52.5%        33.7%    35.9%
+           85.0%           64.0%        38.5%    39.9%
+           90.0%           78.7%        45.7%    41.9%
+           95.0%           96.7%        63.2%    34.7%
+           95.5%           98.1%        67.6%    30.9%
+           95.7%           98.2%        63.0%    35.5%
+        detected   ours (budget)      uniform  speedup
+             50%           14.9%        16.3%     1.1x
+             75%           29.6%        44.0%     1.5x
+             90%           45.7%        78.7%     1.7x
+             project  arms  npos   saved@0.70   saved@0.80   saved@0.85   saved@0.90  uni@0.90  st saved  recall      FP
+           bytebuddy   912   319        13.8%        29.0%        33.6%        36.3%     76.2%     26.3%   0.969  0.0000
+  eclipsecollections  1350   347        54.7%        62.8%        64.0%        60.7%     68.1%     45.1%   0.969  0.0016
+             jctools  1055   215        47.5%        47.9%        49.4%        44.2%     88.0%     30.7%   0.943  0.0014
+            jenetics   891   105        46.7%        40.7%        27.2%            -         -     22.5%   0.895  0.0003
+               netty  1281   577         7.6%        22.9%        30.1%        36.2%     71.9%     27.5%   0.968  0.0048
+                okio  1498   390        41.4%        46.9%        46.4%        45.3%     83.2%     24.4%   0.959  0.0004
+               xodus   349   134        -5.5%        12.2%        20.7%        34.2%     76.1%     25.2%   0.960  0.0093
+              zipkin  1056   334        16.7%        31.1%        39.0%        39.7%     76.2%     26.5%   0.955  0.0019
+  -> perproject_savings.json
+
+goduet: 254 arms / 4 traces, 21 |effect| >3% (two-sided)   [5 seeds, 24.9s, replay=ordered, per-trace scheduling, uniform alpha=0.004 (validity-matched)]
+  self-terminating: saved 85.4%   recall 1.000   FP 0.0000
+  matched recall  uniform budget   our budget    saved
+           70.0%            4.0%         2.4%    39.3%
+           80.0%            4.0%         2.8%    30.6%
+           85.0%            4.0%         3.2%    18.8%
+           90.0%           21.4%         3.6%    83.1%
+           95.0%           27.7%        14.7%    47.0%
+           95.5%           58.3%        16.6%    71.5%
+           95.7%           58.6%        16.6%    71.6%
+        detected   ours (budget)      uniform  speedup
+             50%            2.0%         4.0%     2.0x
+             75%            2.6%         4.0%     1.6x
+             90%            3.6%        21.4%     5.9x
+             project  arms  npos   saved@0.70   saved@0.80   saved@0.85   saved@0.90  uni@0.90  st saved  recall      FP
+      compress_flate: dropped (<5 relevant changes)
+              gotoml    70     8        44.2%        36.0%        36.0%        18.8%      4.0%     86.5%   1.000  0.0000
+   prometheus_common: dropped (<5 relevant changes)
+                 zap    80     6        88.1%        90.4%        72.4%        74.2%     56.8%     83.2%   1.000  0.0000
+  -> perproject_savings.json
