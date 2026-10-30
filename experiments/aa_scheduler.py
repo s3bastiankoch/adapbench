@@ -19,14 +19,14 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import common  # noqa: E402
-from adabench.datasets import EPS_D, project_of  # noqa: E402
-from adabench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
+from adapbench.datasets import EPS_D, project_of  # noqa: E402
+from adapbench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
 
 ALPHA = 0.01
-SEEDS = common.SEEDS  # ADABENCH_SEEDS=5,6,7,8,9 -> held-out A/A, tagged output file
+SEEDS = common.SEEDS  # ADAPBENCH_SEEDS=5,6,7,8,9 -> held-out A/A, tagged output file
 EDGES = ((+1.0, "pos"), (-1.0, "neg"))
 # The deployed splits, so this tests exactly what scheduler_savings_pertrace ships
-# (the one-sided table under ADABENCH_SIDE=up). Suites without an entry fall back
+# (the one-sided table under ADAPBENCH_SIDE=up). Suites without an entry fall back
 # to one shared alpha.
 SPLIT = common.SPLIT_1S if common.SIDE == "up" else common.SPLIT
 

@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-from adabench.datasets import BIG_REL, EPS_D  # noqa: E402
+from adapbench.datasets import BIG_REL, EPS_D  # noqa: E402
 
 BAND = EPS_D
 
@@ -21,7 +21,7 @@ def test_eps_d_is_three_percent_in_duet_coords():
 def test_fast_scheduler_matches_scheduler():
     # FastScheduler is a drop-in O(log N) replacement: it must produce byte-identical
     # decisions and total spend to the reference O(N) Scheduler.
-    from adabench.scheduler import Scheduler, FastScheduler, ReplayRunner
+    from adapbench.scheduler import Scheduler, FastScheduler, ReplayRunner
     rng = np.random.default_rng(0)
     pools = {f"reg{i}": rng.normal(3 * BAND, 0.02, 600) for i in range(3)}
     pools.update({f"flat{i}": rng.normal(0.0, 0.03, 600) for i in range(25)})
@@ -31,7 +31,7 @@ def test_fast_scheduler_matches_scheduler():
 
 
 def test_scheduler_flags_regressions_and_saves_budget():
-    from adabench.scheduler import Scheduler, ReplayRunner
+    from adapbench.scheduler import Scheduler, ReplayRunner
     rng = np.random.default_rng(0)
     pools = {f"reg{i}": rng.normal(3 * BAND, 0.02, 800) for i in range(2)}      # regressions
     pools.update({f"flat{i}": rng.normal(0.0, 0.03, 800) for i in range(8)})    # no change
@@ -48,7 +48,7 @@ def test_boot_means_pins_the_calibration_rng_contract():
     # bootstrap draw bit for bit: same 800 resamples, same blake2b per-(seed, arm)
     # rng. Changing Scheduler._boot or the digest string silently invalidates
     # every calibrated split. This test is the tripwire.
-    from adabench.scheduler import Scheduler
+    from adapbench.scheduler import Scheduler
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "experiments"))
     import common
     rng = np.random.default_rng(7)
@@ -65,7 +65,7 @@ def test_certified_stop_retires_a_hopeless_arm_within_budget():
     # An arm sitting exactly on zero effect with high variance can neither claim
     # nor pass futility fast; the certified budget stop must retire it as
     # undecided before the budget is exhausted, and must never claim.
-    from adabench.scheduler import Scheduler, ReplayRunner
+    from adapbench.scheduler import Scheduler, ReplayRunner
     rng = np.random.default_rng(1)
     v = rng.normal(0.0, 0.25, 4000)
     v = v - v.mean()                                   # dead-centered null

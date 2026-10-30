@@ -19,13 +19,13 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import common  # noqa: E402
-from adabench.datasets import EPS_D  # noqa: E402
-from adabench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
+from adapbench.datasets import EPS_D  # noqa: E402
+from adapbench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
 
 ALPHA = 0.01  # the level the UNION has to hold
 MARGIN = 0.8  # select at MARGIN*alpha so the held-out check has some slack
 BOOT = 800
-SIDE = common.SIDE  # ADABENCH_SIDE=up -> slowdown-only calibration, _1s outputs
+SIDE = common.SIDE  # ADAPBENCH_SIDE=up -> slowdown-only calibration, _1s outputs
 SELECT, HELDOUT = tuple(range(5)), tuple(range(5, 10))
 AC_GRID = (0.005, 0.007, 0.010)  # alpha_claim, one scheduler pass each
 AP_GRID = (0.002, 0.003, 0.004, 0.005, 0.006, 0.008, 0.010)  # alpha_pool, analytic sweep

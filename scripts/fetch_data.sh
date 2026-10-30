@@ -2,7 +2,7 @@
 # Fetch the recorded duet-trace corpus into ./data/traces.
 #
 # The traces are released separately from the code (~378 MB tcp8 + ~10 MB goduet).
-# Set DATA_URL to the release archive, or ADABENCH_DATA_ROOT to a local copy.
+# Set DATA_URL to the release archive, or ADAPBENCH_DATA_ROOT to a local copy.
 #
 # Expected layout after fetching:
 #   data/traces/tcp8/<trace>/{trace.meta.json,trace.data.npz}     # 118 Java traces
@@ -10,14 +10,14 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEST="${ADABENCH_DATA_ROOT:-$REPO/data}/traces"
-DATA_URL="${DATA_URL:-}"   # <-- set to the published release archive URL
+DEST="${ADAPBENCH_DATA_ROOT:-$REPO/data}/traces"
+DATA_URL="${DATA_URL:-https://github.com/s3bastiankoch/adapbench/releases/download/v1.0.0/adapbench-traces.tar.zst}"
 
 if [[ -z "$DATA_URL" ]]; then
   echo "DATA_URL is not set."
   echo "Point it at the released trace archive, e.g.:"
-  echo "  DATA_URL=https://<release-host>/adabench-traces.tar.zst $0"
-  echo "or set ADABENCH_DATA_ROOT to a directory that already contains traces/."
+  echo "  DATA_URL=https://github.com/s3bastiankoch/adapbench/releases/download/v1.0.0/adapbench-traces.tar.zst $0"
+  echo "or set ADAPBENCH_DATA_ROOT to a directory that already contains traces/."
   exit 1
 fi
 

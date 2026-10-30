@@ -52,7 +52,7 @@ def _label_params() -> dict:
 DECIDED = ("regression", "improvement", "no_change")
 
 DATA_ROOT = Path(os.environ.get(
-    "ADABENCH_DATA_ROOT", Path(__file__).resolve().parents[2] / "data"))
+    "ADAPBENCH_DATA_ROOT", Path(__file__).resolve().parents[2] / "data"))
 
 # The canonical TCP suite: 8 open-source Java projects.
 _TCP_PROJECTS = ("bytebuddy", "eclipsecollections", "jctools", "jenetics",
@@ -153,7 +153,7 @@ def _trace_dirs(suite: str) -> list[Path]:
     root = DATA_ROOT / "traces" / suite
     if not root.is_dir():
         raise FileNotFoundError(
-            f"trace data not found at {root}. Set ADABENCH_DATA_ROOT or run "
+            f"trace data not found at {root}. Set ADAPBENCH_DATA_ROOT or run "
             "scripts/fetch_data.sh to download the corpus.")
     return sorted(p for p in root.iterdir()
                   if (p / "trace.meta.json").is_file())
@@ -209,12 +209,12 @@ def load(name: str):
                if project_of("goduet", t.name) not in _GODUET_EXCLUDED]
 
     # Labels are deterministic but slow, so cached under data/labels/, keyed
-    # by method + knobs + corpus fingerprint. ADABENCH_RELABEL forces a
+    # by method + knobs + corpus fingerprint. ADAPBENCH_RELABEL forces a
     # recompute.
     cache = DATA_ROOT / "labels" / f"{name}.json"
     sig = _corpus_signature(tps)
     doc = None
-    if cache.is_file() and not os.environ.get("ADABENCH_RELABEL"):
+    if cache.is_file() and not os.environ.get("ADAPBENCH_RELABEL"):
         doc = json.loads(cache.read_text())
         stale = (doc.get("method") != LABEL_METHOD
                  or doc.get("params") != _label_params()

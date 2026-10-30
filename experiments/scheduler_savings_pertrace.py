@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Headline evaluation: recall-vs-budget frontier of the real online scheduler
-(adabench.FastScheduler) run independently per version-pair trace, the CI-run
+(adapbench.FastScheduler) run independently per version-pair trace, the CI-run
 deployment unit, so no trace subsidizes another's budget.
 
 Each trace gets its own scheduler over its own budget; a detection costs
@@ -34,8 +34,8 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import common  # noqa: E402
-from adabench.datasets import EPS_D, project_of  # noqa: E402
-from adabench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
+from adapbench.datasets import EPS_D, project_of  # noqa: E402
+from adapbench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
 
 # shipped blocks + calibrated alpha split live in common.py, next to the
 # validity-matched uniform levels (UNI, from uniform_validity.py).
@@ -51,7 +51,7 @@ def _one_trace(pools, arms, block, ac, ap, pool, seed, mode):
     sched = FastScheduler(sub, band=EPS_D, alpha_claim=ac, alpha_pool=ap, block=blk,
                           budget_per_arm={a: len(sub[a]) for a in arms}, seed=seed,
                           pool_decide=pool, side=("up" if common.SIDE == "up" else None),
-                          pool_checkpoints=common.CKPT)  # opt-in confirm ladder via ADABENCH_CKPT
+                          pool_checkpoints=common.CKPT)  # opt-in confirm ladder via ADAPBENCH_CKPT
     dec, sp = sched.run(ReplayRunner(sub, mode=mode, seed=seed))
     return dec, sp, dict(sched.detected_at)
 

@@ -1,9 +1,9 @@
-"""adabench: spend benchmark measurements only where they are needed.
+"""adapbench: spend benchmark measurements only where they are needed.
 
 An online scheduler allocates the next measurement to the benchmark nearest a decision
 and early-stops each one the moment its verdict is certain, under an anytime-valid
 false-claim guarantee that holds despite the adaptive allocation and continuous peeking.
-No historical data. The deployable prototype is :class:`adabench.scheduler.Scheduler`."""
+No historical data. The deployable prototype is :class:`adapbench.scheduler.Scheduler`."""
 
 from .cs import BettingCS, claims_cs
 from .trace import SharedTrace, load_shared

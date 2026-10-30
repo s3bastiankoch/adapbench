@@ -18,12 +18,12 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "src"))
-from adabench.datasets import EPS_D  # noqa: E402
+from adapbench.datasets import EPS_D  # noqa: E402
 import common  # noqa: E402
 
 ALPHA = common.ALPHA
 BOOT = common.BOOT
-SIDE = common.SIDE  # ADABENCH_SIDE=up -> slowdown-only baseline, _1s outputs
+SIDE = common.SIDE  # ADAPBENCH_SIDE=up -> slowdown-only baseline, _1s outputs
 DEPTHS = (80, 200, 500, 1000, 1490)  # stress every depth, keep the worst
 AU_GRID = (0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.010)  # candidate levels
 

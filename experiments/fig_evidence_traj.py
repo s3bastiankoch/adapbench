@@ -34,8 +34,8 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import common  # noqa: E402
-from adabench.cs import claims_cs  # noqa: E402
-from adabench.datasets import EPS_D, _to_rel  # noqa: E402
+from adapbench.cs import claims_cs  # noqa: E402
+from adapbench.datasets import EPS_D, _to_rel  # noqa: E402
 
 _BENCH = ("io.netty.microbench.buffer."
           "ByteBufAllocatorConcurrentBenchmark.allocateRelease|size=00256")

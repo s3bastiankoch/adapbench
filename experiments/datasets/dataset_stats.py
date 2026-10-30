@@ -2,7 +2,7 @@
 #
 # Everything works on the measurement-phase duet diff d = (s1-s2)/(s1+s2):
 # unitless, 0 = same speed, positive = version 1 slower. Labelling lives in
-# adabench.datasets (samples are autocorrelated, so it block-bootstraps a 99%
+# adapbench.datasets (samples are autocorrelated, so it block-bootstraps a 99%
 # CI of the mean from ~tau-sized blocks and compares it to the +/-3% band);
 # load() returns a magnitude per arm (0.0 = confirmed no-change, None =
 # undecided). Pool stats below use the exact arm universe the experiments
@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import common  # noqa: E402
-from adabench.datasets import load, project_of  # noqa: E402
+from adapbench.datasets import load, project_of  # noqa: E402
 
 SUITE_LABEL = {"tcp8": "Java (tcp8)", "goduet": "Go (goduet)"}
 SUITE_COLOR = {"tcp8": "#2a78d6", "goduet": "#eb6834"}

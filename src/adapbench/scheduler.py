@@ -18,7 +18,7 @@ No historical data needed. State is O(1) per arm; selection is O(#active)
 here, O(log #arms) in FastScheduler. Measurement is pluggable: implement
 Runner.measure and the scheduler works unchanged.
 
-    from adabench.scheduler import Scheduler, ReplayRunner
+    from adapbench.scheduler import Scheduler, ReplayRunner
     sched = Scheduler(pools.keys(), block=4, budget_per_arm=1490)
     decisions, spent = sched.run(ReplayRunner(pools))
 """

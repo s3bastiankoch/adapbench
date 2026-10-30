@@ -35,7 +35,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import common  # noqa: E402,F401
-from adabench.datasets import DATA_ROOT  # noqa: E402
+from adapbench.datasets import DATA_ROOT  # noqa: E402
 
 CORPORA = ("prometheus_common", "compress_flate", "gotoml", "zap", "etcd")
 RMITDUET = HERE.parent.parent.parent / "datasets" / "rmitduet"

@@ -21,4 +21,3 @@ venv/
 # trace corpus (fetched separately; see scripts/fetch_data.sh and data/README.md)
 data/*
 !data/README.md
-.claude/

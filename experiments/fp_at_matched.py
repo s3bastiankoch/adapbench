@@ -25,10 +25,10 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import common  # noqa: E402
-from adabench.datasets import EPS_D  # noqa: E402
-from adabench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
+from adapbench.datasets import EPS_D  # noqa: E402
+from adapbench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
 
-T = float(os.environ.get("ADABENCH_T", "0.90"))   # the matched recall anchor
+T = float(os.environ.get("ADAPBENCH_T", "0.90"))   # the matched recall anchor
 AGRID = (0.007, 0.01, 0.02, 0.03, 0.05, 0.08, 0.12, 0.20, 0.30, 0.50)
 
 

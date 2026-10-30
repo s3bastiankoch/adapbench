@@ -22,8 +22,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "src"))
 sys.path.insert(0, str(HERE))
 import common  # noqa: E402
-from adabench.datasets import EPS_D, project_of  # noqa: E402
-from adabench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
+from adapbench.datasets import EPS_D, project_of  # noqa: E402
+from adapbench.scheduler import FastScheduler, ReplayRunner  # noqa: E402
 
 STRATS = (("ours", 0.15), ("round-robin", 1.00))  # (name, explore fraction)
 PROJ_DET = (0.50, 0.75)  # per-project sooner tally milestones

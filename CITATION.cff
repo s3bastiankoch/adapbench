@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use AdapBench or its dataset, please cite the paper below."
+title: "AdapBench"
+type: software
+license: MIT
+repository-code: "https://github.com/s3bastiankoch/adapbench"
+authors:
+  - family-names: Koch
+    given-names: Sebastian
+  - family-names: Heisterberg
+    given-names: Jonas
+  - family-names: Japke
+    given-names: Nils
+  - family-names: Bermbach
+    given-names: David
+preferred-citation:
+  type: conference-paper
+  title: "AdapBench: Adaptive Early-Stopping and Prioritization for Efficient Microbenchmarking in Cloud-based CI/CD"
+  authors:
+    - family-names: Koch
+      given-names: Sebastian
+    - family-names: Heisterberg
+      given-names: Jonas
+    - family-names: Japke
+      given-names: Nils
+    - family-names: Bermbach
+      given-names: David
+  collection-title: "Proceedings of the 19th IEEE/ACM International Conference on Utility and Cloud Computing (UCC)"
+  publisher:
+    name: IEEE
+  year: 2026

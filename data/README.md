@@ -3,12 +3,12 @@
 The experiments replay recorded microbenchmark measurements. The traces are released
 **separately from the code** (they are large and carry their own upstream licenses), so
 this directory is empty in a fresh clone. Nothing here is required for a smoke test:
-`python -m adabench.scheduler` runs the online scheduler on synthetic data with no
+`python -m adapbench.scheduler` runs the online scheduler on synthetic data with no
 traces.
 
 ## Expected layout
 
-The loader reads from `$ADABENCH_DATA_ROOT/traces` (default `./data/traces`):
+The loader reads from `$ADAPBENCH_DATA_ROOT/traces` (default `./data/traces`):
 
 ```
 data/traces/tcp8/<trace>/{trace.meta.json, trace.data.npz}     # 118 Java traces
@@ -27,12 +27,12 @@ Pick one:
 
 1. **Fetch the release archive.** Point `DATA_URL` at the published trace archive:
    ```bash
-   DATA_URL=https://<release-host>/adabench-traces.tar.zst scripts/fetch_data.sh
+   DATA_URL=https://github.com/s3bastiankoch/adapbench/releases/download/v1.0.0/adapbench-traces.tar.zst scripts/fetch_data.sh
    ```
 2. **Use a local copy.** If you already have the traces somewhere, set
-   `ADABENCH_DATA_ROOT` to the directory that contains `traces/`:
+   `ADAPBENCH_DATA_ROOT` to the directory that contains `traces/`:
    ```bash
-   export ADABENCH_DATA_ROOT=/path/to/adabench-data
+   export ADAPBENCH_DATA_ROOT=/path/to/adapbench-data
    ```
 
 ## Suites and sources
@@ -40,7 +40,7 @@ Pick one:
 | suite | traces | size | source |
 |---|---|---|---|
 | **goduet** | 5 (prometheus_common / compress_flate / gotoml / zap / etcd) | ~10 MB | our own GCP RMIT-collected duet corpora (`experiments/datasets/stage_rmitduet.py`) |
-| **tcp8** | 118 (8 Java projects) | ~378 MB | derived from the `microbench-tcp` replication package (per-arm pool ≤ 1500) |
+| **tcp8** | 118 (8 Java projects) | ~378 MB | derived from the [Laaber et al. EMSE 2021 replication package](https://doi.org/10.1007/s10664-021-10037-x), CC BY 4.0 (per-arm pool ≤ 1500) |
 
 The archive ships all 5 goduet corpora, but the loader evaluates 4: etcd is
 excluded because its reference recording is contaminated (see

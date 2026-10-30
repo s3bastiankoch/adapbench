@@ -2,7 +2,7 @@
 (which must match Scheduler._pool_decide bit for bit), the full-recording
 bootstrap verdict, and the shipped per-suite scheduler config.
 
-Import this before adabench; it puts src/ on sys.path.
+Import this before adapbench; it puts src/ on sys.path.
 """
 import hashlib
 import os
@@ -16,30 +16,30 @@ HERE = Path(__file__).resolve().parent
 if str(HERE.parent / "src") not in sys.path:
     sys.path.insert(0, str(HERE.parent / "src"))
 
-from adabench.datasets import load, project_of  # noqa: E402
-from adabench import load_shared                # noqa: E402
+from adapbench.datasets import load, project_of  # noqa: E402
+from adapbench import load_shared                # noqa: E402
 
 RESULTS = HERE / "results"
 
 ALPHA = 0.01
 BOOT = 800
 # Default seeds 0-4 are ALSO split_calibration's selection seeds, so numbers on them
-# are in-sample w.r.t. the alpha split and UNI. ADABENCH_SEEDS=5,6,7,8,9 evaluates
+# are in-sample w.r.t. the alpha split and UNI. ADAPBENCH_SEEDS=5,6,7,8,9 evaluates
 # the exact shipped config on the held-out set; tagged outputs keep the runs apart.
-_ENV_SEEDS = os.environ.get("ADABENCH_SEEDS")
+_ENV_SEEDS = os.environ.get("ADAPBENCH_SEEDS")
 SEEDS = tuple(int(s) for s in _ENV_SEEDS.split(",")) if _ENV_SEEDS else (0, 1, 2, 3, 4)
 SEEDS_TAG = f"_seeds{'-'.join(str(s) for s in SEEDS)}" if _ENV_SEEDS else ""
 TARGETS = (0.70, 0.80, 0.85, 0.90, 0.95, 0.955, 0.957)
 DET = (0.50, 0.75, 0.90)  # detection-latency milestones
 
-SIDE = os.environ.get("ADABENCH_SIDE")  # 'up' = slowdown-only, anything else = two-sided
+SIDE = os.environ.get("ADAPBENCH_SIDE")  # 'up' = slowdown-only, anything else = two-sided
 SIDE_TAG = "_1s" if SIDE == "up" else ""  # suffix for one-sided result files
 # 'rmit' resamples i.i.d. from the pool; 'ordered' walks the recording once, in
 # order. The reference stream and the runner switch together. Per-suite default:
 # tcp8 was recorded sequentially, so i.i.d. resampling is the RMIT approximation;
 # goduet keeps only RMIT-collected arms (datasets._GODUET_MODES) and replays the
-# recording in its RMIT order. ADABENCH_REPLAY overrides both (stress-test knob).
-_ENV_REPLAY = os.environ.get("ADABENCH_REPLAY")
+# recording in its RMIT order. ADAPBENCH_REPLAY overrides both (stress-test knob).
+_ENV_REPLAY = os.environ.get("ADAPBENCH_REPLAY")
 REPLAY_DEFAULT = {"tcp8": "rmit", "goduet": "ordered"}
 REPLAY = _ENV_REPLAY or "rmit"  # suite-agnostic fallback (arm-level helpers)
 
@@ -47,7 +47,7 @@ REPLAY = _ENV_REPLAY or "rmit"  # suite-agnostic fallback (arm-level helpers)
 def replay_mode(suite):
     """The replay mode a suite's experiments run under."""
     return _ENV_REPLAY or REPLAY_DEFAULT.get(suite, "rmit")
-_ENV_CKPT = os.environ.get("ADABENCH_CKPT")  # confirm-only checkpoints; level 0.0 never claims
+_ENV_CKPT = os.environ.get("ADAPBENCH_CKPT")  # confirm-only checkpoints; level 0.0 never claims
 CKPT = tuple((float(f), 0.0) for f in _ENV_CKPT.split(",")) if _ENV_CKPT else None
 
 # The fixed-n bootstrap over-claims at shallow depth (tcp8 band-edge A/A 0.0118), so
@@ -68,7 +68,7 @@ BLOCK_PROJ = {"tcp8": {"jctools": 6}}
 # split_calibration_goduet.json sel A/A 0.0079 recall 1.000, held-out 0.0039/0.990.
 SPLIT = {"tcp8": (0.005, 0.006), "goduet": (0.005, 0.002)}
 
-# One-sided (ADABENCH_SIDE=up, slowdown-only) calibrations
+# One-sided (ADAPBENCH_SIDE=up, slowdown-only) calibrations
 # (split_calibration_tcp8_1s.json: sel A/A 0.0076, held-out 0.0075, recall 0.926;
 # uniform_validity_tcp8_1s.json: 0.004 fails by a hair at 0.0100, chosen 0.003).
 SPLIT_1S = {"tcp8": (0.005, 0.004)}
@@ -77,7 +77,7 @@ UNI_1S = {"tcp8": 0.003}
 
 def shipped_config(suite):
     """(alpha_claim, alpha_pool, pool_decide) under the shipped config: the one-sided
-    split when ADABENCH_SIDE=up has one, else the calibrated two-sided split, else
+    split when ADAPBENCH_SIDE=up has one, else the calibrated two-sided split, else
     CS-only at plain alpha (the pool route stays off, which keeps uncalibrated
     suites valid without a calibration run)."""
     if SIDE == "up" and suite in SPLIT_1S:
@@ -154,10 +154,10 @@ def ref_stream(name, pool, n, seed, mode=None):
     if mode == "shuffle":
         return np.asarray(pool, float)[arm_rng(name, seed).permutation(len(pool))[:n]]
     if mode == "window":
-        from adabench.scheduler import window_perm
+        from adapbench.scheduler import window_perm
         return np.asarray(pool, float)[window_perm(arm_rng(name, seed), len(pool))[:n]]
     if mode == "hier":
-        from adabench.scheduler import HIER_SIZES, hier_perm
+        from adapbench.scheduler import HIER_SIZES, hier_perm
         return np.asarray(pool, float)[hier_perm(arm_rng(name, seed), len(pool), HIER_SIZES)[:n]]
     if mode == "ordered":
         return np.asarray(pool[:n], float)
